@@ -22,14 +22,38 @@ public class Actor
     private Vector2 scale;
 
     public Actor(
-        Vector2 position = new Vector2(0, 0), Vector2 scale = new Vector2(1, 1)
+        Vector2? position = null, Vector2? scale = null
         )
     {
-        Position = position;
-        Scale = scale;
+        if (position == null)
+        {
+            Position = Vector2.Zero;
+        }
+        else
+        {
+            Position = ((Vector2)position);
+        }
+        if (scale == null)
+        {
+            Scale = Vector2.One;
+        }
+        else
+        {
+            Scale = ((Vector2)scale);
+        }
     }
 
-    public void Update(float deltaTime)
+    public virtual void Initialize()
+    {
+        
+    }
+
+    public virtual void LoadContent()
+    {
+        
+    }
+
+    public virtual void Update(float deltaTime)
     {
         
     }

@@ -9,23 +9,12 @@ public class Entity : Actor
 {
     public AnimatedSprite animatedSprite;
 
-    public Entity(
-        Texture2D spriteSheet, int rows, int columns, 
-        Vector2 position = new Vector2(0, 0), 
-        Vector2 scale = new Vector2(1, 1)) 
-        : Actor(position, scale)
+    public Entity(Texture2D spriteSheet, int rows, int columns, 
+    Vector2? position = null, 
+    Vector2? scale = null) 
+    : base(((Vector2)position), ((Vector2)scale))
     {
         animatedSprite = new AnimatedSprite(spriteSheet, rows, columns);
-    }
-
-    public void Initialize()
-    {
-
-    }
-
-    public void LoadContent()
-    {
-
     }
 
     public override void Update(float deltaTime)
@@ -35,6 +24,6 @@ public class Entity : Actor
 
     public void Draw(SpriteBatch _spriteBatch)
     {
-        animatedSprite.Draw(_spriteBatch, position, scale);
+        animatedSprite.Draw(_spriteBatch, Position, Scale);
     }
 }

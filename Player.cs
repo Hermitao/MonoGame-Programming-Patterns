@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
  
 public class Player : Entity
 {
@@ -17,9 +18,9 @@ public class Player : Entity
 
     public Player(
         Texture2D spriteSheet, int rows, int columns, 
-        Vector2 position = new Vector2(0, 0), 
-        Vector2 scale = new Vector2(1, 1)) 
-        : Entity(spriteSheet, rows, columns, position, scale)
+        Vector2? position = null,
+        Vector2? scale = null) 
+        : base(spriteSheet, rows, columns, (Vector2)position, (Vector2)scale)
     {
         animatedSprite = new AnimatedSprite(spriteSheet, rows, columns);
         state = State.Idle;
@@ -35,7 +36,7 @@ public class Player : Entity
 
     }
 
-    public override void Update(float deltaTime, KeyboardState kstate)
+    public void Update(float deltaTime, KeyboardState kstate)
     {
         animatedSprite.Update(deltaTime);
 
@@ -56,11 +57,19 @@ public class Player : Entity
                 {
                     Idle();
                 }
+                if (kstate.IsKeyDown(Keys.S))
+                {
+                    Duck();
+                }
                 break;
             case State.Ducking:
                 if (kstate.IsKeyDown(Keys.Space))
                 {
                     Jump();
+                }
+                if (kstate.IsKeyDown(Keys.W))
+                {
+                    Idle();
                 }
                 break;
         }
@@ -68,20 +77,20 @@ public class Player : Entity
 
     public void Draw(SpriteBatch _spriteBatch)
     {
-        animatedSprite.Draw(_spriteBatch, position, scale);
+        animatedSprite.Draw(_spriteBatch, Position, Scale);
     }
 
     public void Jump()
     {
-        playerState = State.Jumping;
+        state = State.Jumping;
         animatedSprite.MinFrame = 42;
-        animatedSprite.MaxFrame = 58;
-        animatedSprite.Fps = 10;
+        animatedSprite.MaxFrame = 56;
+        animatedSprite.Fps = 12;
     }
 
     public void Idle()
     {
-        playerState = State.Idle;
+        state = State.Idle;
         animatedSprite.MinFrame = 0;
         animatedSprite.MaxFrame = 3;
         animatedSprite.Fps = 5;
@@ -89,9 +98,9 @@ public class Player : Entity
 
     public void Duck()
     {
-        playerState = State.Ducking;
+        state = State.Ducking;
         animatedSprite.MinFrame = 4;
-        animatedSprite.MaxFrame = 6;
+        animatedSprite.MaxFrame = 7;
         animatedSprite.Fps = 5;
     }
 }

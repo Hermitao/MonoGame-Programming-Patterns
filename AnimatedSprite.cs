@@ -26,7 +26,7 @@ public class AnimatedSprite
         get { return maxFrame; }
         set
         {
-            maxFrame = value;
+            maxFrame = value + 1;
             totalFrames = MaxFrame - MinFrame + 1;
             currentFrame = minFrame;
         } 

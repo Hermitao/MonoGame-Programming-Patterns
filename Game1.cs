@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using TextureAtlas;
 
 namespace MonoGame_Programming_Patterns;
 
@@ -41,10 +40,6 @@ public class Game1 : Game
         // TODO: use this.Content to load your game content here
         texture = Content.Load<Texture2D>("Individual Sprites/adventurer-run-00");
         atlas = Content.Load<Texture2D>("adventurer-Sheet");
-        animatedSprite = new AnimatedSprite(atlas, 11, 7);
-        animatedSprite.MinFrame = 0;
-        animatedSprite.MaxFrame = 3;
-        animatedSprite.Fps = 5;
 
         player = new Player(atlas, 11, 7, position, new Vector2(2, 2));
     }
@@ -60,9 +55,9 @@ public class Game1 : Game
             Exit();
 
         // TODO: Add your update logic here
-        animatedSprite.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-
         var kstate = Keyboard.GetState();
+
+        float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         player.Update(deltaTime, kstate);
 
@@ -102,7 +97,7 @@ public class Game1 : Game
         GraphicsDevice.Clear(new Color(0.1f, 0.1f, 0.1f));
 
         // TODO: Add your drawing code here
-        player.Draw(spriteBatch);
+        player.Draw(_spriteBatch);
 
         base.Draw(gameTime);
     }
