@@ -44,35 +44,23 @@ public class Player : Entity
             case State.Idle:
                 if (kstate.IsKeyDown(Keys.Space))
                 {
-                    playerState = State.Jumping;
-                    animatedSprite.MinFrame = 42;
-                    animatedSprite.MaxFrame = 58;
-                    animatedSprite.Fps = 10;
+                    Jump();
                 }
                 else if (kstate.IsKeyDown(Keys.S))
                 {
-                    playerState = State.Ducking;
-                    animatedSprite.MinFrame = 4;
-                    animatedSprite.MaxFrame = 6;
-                    animatedSprite.Fps = 5;
+                    Duck();
                 }
                 break;
             case State.Jumping:
                 if (kstate.IsKeyDown(Keys.D))
                 {
-                    playerState = State.Idle;
-                    animatedSprite.MinFrame = 0;
-                    animatedSprite.MaxFrame = 3;
-                    animatedSprite.Fps = 5;
+                    Idle();
                 }
                 break;
             case State.Ducking:
                 if (kstate.IsKeyDown(Keys.Space))
                 {
-                    playerState = State.Jumping;
-                    animatedSprite.MinFrame = 42;
-                    animatedSprite.MaxFrame = 58;
-                    animatedSprite.Fps = 10;
+                    Jump();
                 }
                 break;
         }
@@ -81,5 +69,29 @@ public class Player : Entity
     public void Draw(SpriteBatch _spriteBatch)
     {
         animatedSprite.Draw(_spriteBatch, position, scale);
+    }
+
+    public void Jump()
+    {
+        playerState = State.Jumping;
+        animatedSprite.MinFrame = 42;
+        animatedSprite.MaxFrame = 58;
+        animatedSprite.Fps = 10;
+    }
+
+    public void Idle()
+    {
+        playerState = State.Idle;
+        animatedSprite.MinFrame = 0;
+        animatedSprite.MaxFrame = 3;
+        animatedSprite.Fps = 5;
+    }
+
+    public void Duck()
+    {
+        playerState = State.Ducking;
+        animatedSprite.MinFrame = 4;
+        animatedSprite.MaxFrame = 6;
+        animatedSprite.Fps = 5;
     }
 }
