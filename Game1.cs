@@ -30,7 +30,6 @@ public class Game1 : Game
         position = new Vector2(_graphics.PreferredBackBufferWidth / 2,
             _graphics.PreferredBackBufferHeight / 2);
         speed = 150f;
-        playerState = State.Idle;
 
         base.Initialize();
     }
