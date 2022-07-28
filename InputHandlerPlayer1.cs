@@ -8,8 +8,6 @@ using Microsoft.Xna.Framework.Input;
 
 public class InputHandlerPlayer1
 {
-    KeyboardState kstate;
-
     private AttackCommand buttonAttack;
     private JumpCommand buttonJump;
     private MoveLeftCommand buttonMoveLeft;
@@ -21,12 +19,21 @@ public class InputHandlerPlayer1
 
     public Command HandleInput()
     {
+        var kstate = Keyboard.GetState();
+
+        buttonNull = new NullCommand();
+        buttonAttack = new AttackCommand();
+        buttonJump = new JumpCommand();
+        buttonMoveLeft = new MoveLeftCommand();
+        buttonDuck = new DuckCommand();
+        buttonMoveRight = new MoveRightCommand();
+
         if (kstate.IsKeyDown(Keys.F)) { return buttonAttack; }
         if (kstate.IsKeyDown(Keys.W)) { return buttonJump; }
         if (kstate.IsKeyDown(Keys.A)) { return buttonMoveLeft; }
         if (kstate.IsKeyDown(Keys.S)) { return buttonDuck; }
         if (kstate.IsKeyDown(Keys.D)) { return buttonMoveRight; }
         
-        return buttonNothing;
+        return buttonNull;
     }
 }

@@ -19,8 +19,8 @@ public class Player : Character
         
     }
 
-    public override void Update(float deltaTime)
-    {
-        animatedSprite.Update(deltaTime);
-    }
+    // public override void Update(float deltaTime)
+    // {
+    //     animatedSprite.Update(deltaTime);
+    // }
 }

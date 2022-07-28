@@ -21,12 +21,21 @@ public class InputHandlerPlayer2
 
     public Command HandleInput()
     {
+        var kstate = Keyboard.GetState();
+
+        buttonNull = new NullCommand();
+        buttonAttack = new AttackCommand();
+        buttonJump = new JumpCommand();
+        buttonMoveLeft = new MoveLeftCommand();
+        buttonDuck = new DuckCommand();
+        buttonMoveRight = new MoveRightCommand();
+        
         if (kstate.IsKeyDown(Keys.OemPeriod)) { return buttonAttack; }
         if (kstate.IsKeyDown(Keys.Up)) { return buttonJump; }
         if (kstate.IsKeyDown(Keys.Left)) { return buttonMoveLeft; }
         if (kstate.IsKeyDown(Keys.Down)) { return buttonDuck; }
         if (kstate.IsKeyDown(Keys.Right)) { return buttonMoveRight; }
         
-        return buttonNothing;
+        return buttonNull;
     }
 }

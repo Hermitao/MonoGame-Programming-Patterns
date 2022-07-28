@@ -9,6 +9,8 @@ public class Entity : Actor
 {
     public AnimatedSprite animatedSprite;
 
+    public bool flipX = false;
+
     public Entity(Texture2D spriteSheet, int rows, int columns, 
     Vector2? position = null, 
     Vector2? scale = null) 
@@ -24,6 +26,6 @@ public class Entity : Actor
 
     public void Draw(SpriteBatch _spriteBatch)
     {
-        animatedSprite.Draw(_spriteBatch, Position, Scale);
+        animatedSprite.Draw(_spriteBatch, Position, Scale, flipX);
     }
 }

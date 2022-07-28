@@ -6,7 +6,10 @@ using Microsoft.Xna.Framework;
 
 public class Command
 {
-    public virtual void execute(Character character);
+    public virtual void execute(Character character)
+    {
+
+    }
 }
 
 public class AttackCommand : Command
@@ -15,13 +18,13 @@ public class AttackCommand : Command
     {
         switch (character.state)
         {
-            case State.Idle:
+            case Character.State.Idle:
                 character.Attack();
                 break;
-            case State.Ducking:
+            case Character.State.Ducking:
                 character.Attack();
                 break;
-            case State.Running:
+            case Character.State.Running:
                 character.Attack();
                 break;
         }
@@ -34,10 +37,10 @@ public class DuckCommand : Command
     {
         switch (character.state)
         {
-            case State.Idle:
+            case Character.State.Idle:
                 character.Duck();
                 break;
-            case State.Jumping:
+            case Character.State.Jumping:
                 character.Duck();
                 break;
         }
@@ -50,10 +53,10 @@ public class IdleCommand : Command
     {
         switch (character.state)
         {
-            case State.Jumping:
+            case Character.State.Jumping:
                 character.Idle();
                 break;
-            case State.Ducking:
+            case Character.State.Ducking:
                 character.Idle();
                 break;
         }
@@ -66,13 +69,13 @@ public class JumpCommand : Command
     {
         switch (character.state)
         {
-            case State.Idle:
+            case Character.State.Idle:
                 character.Jump();
                 break;
-            case State.Running:
+            case Character.State.Running:
                 character.Jump();
                 break;
-            case State.Ducking:
+            case Character.State.Ducking:
                 character.Jump();
                 break;
         }
@@ -85,12 +88,12 @@ public class MoveRightCommand : Command
     {
         switch (character.state)
         {
-            case State.Idle:
+            case Character.State.Idle:
                 character.MoveRight();
                 break;
-            case State.Running:
-                character.MoveRight();
-                break;
+            // case Character.State.Running:
+            //     character.MoveRight();
+            //     break;
         }
     }
 }
@@ -101,12 +104,12 @@ public class MoveLeftCommand : Command
     {
         switch (character.state)
         {
-            case State.Idle:
+            case Character.State.Idle:
                 character.MoveLeft();
                 break;
-            case State.Running:
-                character.MoveLeft();
-                break;
+            // case Character.State.Running:
+            //     character.MoveLeft();
+            //     break;
         }
     }
 }
@@ -117,14 +120,15 @@ public class NullCommand : Command
     {
         switch (character.state)
         {
-            case State.Running:
+            case Character.State.Running:
                 character.Idle();
                 break;
-            case State.Ducking:
+            case Character.State.Ducking:
                 character.Idle();
                 break;
-            case State.Attack:
+            case Character.State.Attacking:
                 character.Idle();
+                break;
         }
     }
 }

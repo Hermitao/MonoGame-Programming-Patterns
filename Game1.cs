@@ -58,6 +58,9 @@ public class Game1 : Game
             11, 7, 
             position + new Vector2(50f, 0f), 
             new Vector2(2f, 2f));
+
+        inputHandlerPlayer1 = new InputHandlerPlayer1();
+        inputHandlerPlayer2 = new InputHandlerPlayer2();
     }
 
     protected override void UnloadContent()
@@ -77,8 +80,8 @@ public class Game1 : Game
 
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-        command.execute(player);
-        command.execute(player2);
+        commandPlayer1.execute(player1);
+        commandPlayer2.execute(player2);
         player1.Update(deltaTime);
         player2.Update(deltaTime);
 

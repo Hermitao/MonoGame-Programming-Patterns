@@ -62,7 +62,7 @@ public class AnimatedSprite
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 scale)
+    public void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 scale, bool flipX = false)
     {
         int width = Texture.Width / Columns;
         int height = Texture.Height / Rows;
@@ -70,7 +70,10 @@ public class AnimatedSprite
         int column = currentFrame % Columns;
 
         Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-        Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width * 2, height * 2);
+        Rectangle destinationRectangle = new Rectangle(
+            (int)position.X, (int)position.Y, 
+            (int)((float)width * scale.X), (int)((float)height * scale.Y)
+            );
 
         spriteBatch.Begin(samplerState: SamplerState.PointClamp);
         // spriteBatch.Draw(
@@ -82,7 +85,12 @@ public class AnimatedSprite
             Texture, 
             destinationRectangle, 
             sourceRectangle, 
-            Color.White);
+            Color.White,
+            0f,
+            new Vector2(0, 0),
+            flipX ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
+            0f
+            );
         spriteBatch.End();
     }
 }
