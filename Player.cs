@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.Input;
  
 public class Player : Character
 {
+    private InputHandler inputHandler;
+
     public Player(
         Texture2D spriteSheet, int rows, int columns, 
         Vector2? position = null,
@@ -17,45 +19,8 @@ public class Player : Character
         
     }
 
-    public void Update(float deltaTime)
+    public override void Update(float deltaTime)
     {
         animatedSprite.Update(deltaTime);
-        
-    }
-
-    void HandleInput(Command command)
-    {
-        switch (state)
-        {
-            case State.Idle:
-                if (command == JumpCommand)
-                    Jump();
-                }
-                else if (kstate.IsKeyDown(Keys.S))
-                {
-                    Duck();
-                }
-                break;
-            case State.Jumping:
-                if (kstate.IsKeyDown(Keys.D))
-                {
-                    Idle();
-                }
-                if (kstate.IsKeyDown(Keys.S))
-                {
-                    Duck();
-                }
-                break;
-            case State.Ducking:
-                if (kstate.IsKeyDown(Keys.Space))
-                {
-                    Jump();
-                }
-                if (kstate.IsKeyDown(Keys.W))
-                {
-                    Idle();
-                }
-                break;
-        }
     }
 }

@@ -10,9 +10,15 @@ public class Character : Entity
 {
     public enum State{
         Idle,
+        Running,
         Jumping,
-        Ducking
+        Ducking,
+        Attacking
     }
+
+    public float speed = 4f;
+    public float jumpVelocity = 20f;
+    public float currentVelocity;
 
     public State state;
 
@@ -23,12 +29,29 @@ public class Character : Entity
         : base(spriteSheet, rows, columns, (Vector2)position, (Vector2)scale)
     {
         animatedSprite = new AnimatedSprite(spriteSheet, rows, columns);
+        currentVelocity = new Vector2(0, 0);
         Idle();
     }
 
-    public void Jump()
+    public override void Update(float deltaTime)
     {
-        state = State.Jumping;
+        animatedSprite.Update(deltaTime);
+
+        currentVelocity = new Vector2(
+            currentVelocity.X, 
+            currentVelocity.Y + WorldSettings.gravity * deltaTime);
+
+        Position += currentVelocity;
+
+        if (Position.Y > 400f)
+        {
+            Position.Y = 400f;
+        }
+    }
+
+    public void Attack()
+    {
+        state = State.Attacking;
         animatedSprite.MinFrame = 42;
         animatedSprite.MaxFrame = 56;
         animatedSprite.Fps = 12;
@@ -40,6 +63,8 @@ public class Character : Entity
         animatedSprite.MinFrame = 0;
         animatedSprite.MaxFrame = 3;
         animatedSprite.Fps = 5;
+
+        currentVelocity = new Vector2(0, currentVelocity.Y);
     }
 
     public void Duck()
@@ -48,5 +73,35 @@ public class Character : Entity
         animatedSprite.MinFrame = 4;
         animatedSprite.MaxFrame = 7;
         animatedSprite.Fps = 5;
+    }
+
+    public void Jump()
+    {
+        state = State.Jumping;
+        animatedSprite.MinFrame = 16;
+        animatedSprite.MaxFrame = 17;
+        animatedSprite.Fps = 5;
+
+        currentVelocity = new Vector2(currentVelocity.X, jumpVelocity);
+    }
+
+    public void MoveRight()
+    {
+        state = State.Running;
+        animatedSprite.MinFrame = 8;
+        animatedSprite.MaxFrame = 13;
+        animatedSprite.Fps = 12;
+
+        currentVelocity = new Vector2(speed, currentVelocity.Y);
+    }
+
+    public void MoveLeft()
+    {
+        state = State.Running;
+        animatedSprite.MinFrame = 8;
+        animatedSprite.MaxFrame = 13;
+        animatedSprite.Fps = 12;
+
+        currentVelocity = new Vector2(-speed, currentVelocity.Y);
     }
 }

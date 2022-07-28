@@ -14,7 +14,10 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
-    private Player player;
+    private InputHandlerPlayer1 inputHandlerPlayer1;
+    private InputHandlerPlayer2 inputHandlerPlayer2;
+    private Player player1;
+    private Player player2;
 
     public Game1()
     {
@@ -41,7 +44,16 @@ public class Game1 : Game
         texture = Content.Load<Texture2D>("Individual Sprites/adventurer-run-00");
         atlas = Content.Load<Texture2D>("adventurer-Sheet");
 
-        player = new Player(atlas, 11, 7, position, new Vector2(2, 2));
+        player1 = new Player(
+            atlas, 
+            11, 7, 
+            position, 
+            new Vector2(2f, 2f));
+        player2 = new Player(
+            atlas, 
+            11, 7, 
+            position + new Vector2(50f, 0f), 
+            new Vector2(2f, 2f));
     }
 
     protected override void UnloadContent()
@@ -51,15 +63,20 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back 
+        == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
         // TODO: Add your update logic here
-        var kstate = Keyboard.GetState();
+        Command commandPlayer1 = inputHandlerPlayer1.HandleInput();
+        Command commandPlayer2 = inputHandlerPlayer2.HandleInput();
 
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-        player.Update(deltaTime, kstate);
+        command.execute(player);
+        command.execute(player2);
+        player1.Update(deltaTime);
+        player2.Update(deltaTime);
 
         // if (kstate.IsKeyDown(Keys.Left))
         // {
@@ -97,7 +114,8 @@ public class Game1 : Game
         GraphicsDevice.Clear(new Color(0.1f, 0.1f, 0.1f));
 
         // TODO: Add your drawing code here
-        player.Draw(_spriteBatch);
+        player1.Draw(_spriteBatch);
+        player2.Draw(_spriteBatch);
 
         base.Draw(gameTime);
     }
