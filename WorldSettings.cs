@@ -8,6 +8,6 @@ using Microsoft.Xna.Framework.Input;
 
 public static class WorldSettings
 {
-    static Vector2 gravity = new Vector2(0, -10);
-    static float timeDilation = 1f;
+    public static Vector2 gravity = new Vector2(0, 10);
+    public static float timeDilation = 1f;
 }
