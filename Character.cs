@@ -9,7 +9,8 @@ public class Character : Entity
 {
     public enum State{
         Idle,
-        Running,
+        RunningRight,
+        RunningLeft,
         Jumping,
         Ducking,
         Attacking
@@ -48,16 +49,14 @@ public class Character : Entity
         {
             Position = new Vector2(Position.X, 400f);
 
-            bool movingRight = currentVelocity.X > 0.1f;
-            bool movingLeft = currentVelocity.X < -0.1f;
             switch (state)
             {
                 case State.Jumping:
-                    if (movingRight)
+                    if (currentVelocity.X > 0.1f)
                     {
                         MoveRight();
                     }
-                    else if (movingLeft)
+                    else if (currentVelocity.X < 0.1f)
                     {
                         MoveLeft();
                     }
@@ -112,10 +111,10 @@ public class Character : Entity
 
     public void MoveRight()
     {
-        state = State.Running;
+        state = State.RunningRight;
         animatedSprite.MinFrame = 8;
         animatedSprite.MaxFrame = 13;
-        animatedSprite.Fps = 12;
+        animatedSprite.Fps = 11;
 
         currentVelocity = new Vector2(speed, currentVelocity.Y);
         flipX = false;
@@ -124,10 +123,10 @@ public class Character : Entity
 
     public void MoveLeft()
     {
-        state = State.Running;
+        state = State.RunningLeft;
         animatedSprite.MinFrame = 8;
         animatedSprite.MaxFrame = 13;
-        animatedSprite.Fps = 12;
+        animatedSprite.Fps = 11;
 
         currentVelocity = new Vector2(-speed, currentVelocity.Y);
         flipX = true;

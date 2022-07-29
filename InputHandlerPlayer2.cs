@@ -8,8 +8,6 @@ using Microsoft.Xna.Framework.Input;
 
 public class InputHandlerPlayer2
 {
-    KeyboardState kstate;
-
     private AttackCommand buttonAttack;
     private JumpCommand buttonJump;
     private MoveLeftCommand buttonMoveLeft;

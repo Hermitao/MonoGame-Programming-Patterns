@@ -16,10 +16,18 @@ public class InputHandlerPlayer1
 
     private NullCommand buttonNull;
     
+    private KeyboardState oldState;
 
     public Command HandleInput()
     {
-        var kstate = Keyboard.GetState();
+        var newState = Keyboard.GetState();
+
+        // if(oldState.IsKeyUp(Keys.F) && newState.IsKeyDown(Keys.F))
+        // {
+        //     return buttonAttack;
+        // }
+
+        oldState = newState;
 
         buttonNull = new NullCommand();
         buttonAttack = new AttackCommand();
@@ -28,11 +36,11 @@ public class InputHandlerPlayer1
         buttonDuck = new DuckCommand();
         buttonMoveRight = new MoveRightCommand();
 
-        if (kstate.IsKeyDown(Keys.F)) { return buttonAttack; }
-        if (kstate.IsKeyDown(Keys.W)) { return buttonJump; }
-        if (kstate.IsKeyDown(Keys.A)) { return buttonMoveLeft; }
-        if (kstate.IsKeyDown(Keys.S)) { return buttonDuck; }
-        if (kstate.IsKeyDown(Keys.D)) { return buttonMoveRight; }
+        if (newState.IsKeyDown(Keys.F)) { return buttonAttack; }
+        if (newState.IsKeyDown(Keys.W)) { return buttonJump; }
+        if (newState.IsKeyDown(Keys.A)) { return buttonMoveLeft; }
+        if (newState.IsKeyDown(Keys.S)) { return buttonDuck; }
+        if (newState.IsKeyDown(Keys.D)) { return buttonMoveRight; }
         
         return buttonNull;
     }

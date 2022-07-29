@@ -13,7 +13,6 @@ public class Game1 : Game
     Texture2D texture;
     Texture2D atlas;
     Vector2 position;
-    float speed;
 
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
@@ -35,7 +34,6 @@ public class Game1 : Game
         // TODO: Add your initialization logic here
         position = new Vector2(_graphics.PreferredBackBufferWidth / 2,
             _graphics.PreferredBackBufferHeight / 2);
-        speed = 150f;
 
         base.Initialize();
     }

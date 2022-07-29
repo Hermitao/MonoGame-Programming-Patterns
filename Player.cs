@@ -8,8 +8,6 @@ using Microsoft.Xna.Framework.Input;
  
 public class Player : Character
 {
-    private InputHandler inputHandler;
-
     public Player(
         Texture2D spriteSheet, int rows, int columns, 
         Vector2? position = null,
@@ -18,9 +16,4 @@ public class Player : Character
     {
         
     }
-
-    // public override void Update(float deltaTime)
-    // {
-    //     animatedSprite.Update(deltaTime);
-    // }
 }

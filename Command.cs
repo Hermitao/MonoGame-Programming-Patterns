@@ -24,7 +24,10 @@ public class AttackCommand : Command
             case Character.State.Ducking:
                 character.Attack();
                 break;
-            case Character.State.Running:
+            case Character.State.RunningRight:
+                character.Attack();
+                break;
+            case Character.State.RunningLeft:
                 character.Attack();
                 break;
         }
@@ -40,7 +43,10 @@ public class DuckCommand : Command
             case Character.State.Idle:
                 character.Duck();
                 break;
-            case Character.State.Jumping:
+            case Character.State.RunningRight:
+                character.Duck();
+                break;
+            case Character.State.RunningLeft:
                 character.Duck();
                 break;
         }
@@ -72,7 +78,10 @@ public class JumpCommand : Command
             case Character.State.Idle:
                 character.Jump();
                 break;
-            case Character.State.Running:
+            case Character.State.RunningRight:
+                character.Jump();
+                break;
+            case Character.State.RunningLeft:
                 character.Jump();
                 break;
             case Character.State.Ducking:
@@ -91,9 +100,12 @@ public class MoveRightCommand : Command
             case Character.State.Idle:
                 character.MoveRight();
                 break;
-            // case Character.State.Running:
-            //     character.MoveRight();
-            //     break;
+            case Character.State.RunningLeft:
+                character.MoveRight();
+                break;
+            case Character.State.Ducking:
+                character.MoveRight();
+                break;
         }
     }
 }
@@ -107,9 +119,12 @@ public class MoveLeftCommand : Command
             case Character.State.Idle:
                 character.MoveLeft();
                 break;
-            // case Character.State.Running:
-            //     character.MoveLeft();
-            //     break;
+            case Character.State.RunningRight:
+                character.MoveLeft();
+                break;
+            case Character.State.Ducking:
+                character.MoveLeft();
+                break;
         }
     }
 }
@@ -120,7 +135,10 @@ public class NullCommand : Command
     {
         switch (character.state)
         {
-            case Character.State.Running:
+            case Character.State.RunningRight:
+                character.Idle();
+                break;
+            case Character.State.RunningLeft:
                 character.Idle();
                 break;
             case Character.State.Ducking:
