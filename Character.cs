@@ -19,10 +19,12 @@ public class Character : Entity
     public float speed = 4f;
     public float jumpVelocity = 9f;
     public Vector2 currentVelocity;
-
     public State state;
 
     private float initialXScale;
+
+    private bool pressingRight = false;
+    private bool pressingLeft = false;
 
     public Character(
         Texture2D spriteSheet, int rows, int columns, 
@@ -109,8 +111,13 @@ public class Character : Entity
         currentVelocity = new Vector2(currentVelocity.X, -jumpVelocity);
     }
 
-    public void MoveRight()
+    public void MoveRight(bool releasedCommand = false)
     {
+        if (releasedCommand && pressingLeft)
+        {
+            MoveLeft();
+            return;
+        }
         state = State.RunningRight;
         animatedSprite.MinFrame = 8;
         animatedSprite.MaxFrame = 13;
@@ -118,11 +125,15 @@ public class Character : Entity
 
         currentVelocity = new Vector2(speed, currentVelocity.Y);
         flipX = false;
-        // Scale = new Vector2(initialXScale, Scale.Y);
     }
 
-    public void MoveLeft()
+    public void MoveLeft(bool releasedCommand = false)
     {
+        if (releasedCommand && pressingRight)
+        {
+            MoveRight();
+            return;
+        }
         state = State.RunningLeft;
         animatedSprite.MinFrame = 8;
         animatedSprite.MaxFrame = 13;
@@ -130,6 +141,5 @@ public class Character : Entity
 
         currentVelocity = new Vector2(-speed, currentVelocity.Y);
         flipX = true;
-        // Scale = new Vector2(-initialXScale, Scale.Y);
     }
 }

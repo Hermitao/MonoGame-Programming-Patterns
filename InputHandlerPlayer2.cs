@@ -11,28 +11,45 @@ public class InputHandlerPlayer2
     private AttackCommand buttonAttack;
     private JumpCommand buttonJump;
     private MoveLeftCommand buttonMoveLeft;
+    private MoveLeftReleaseCommand buttonMoveLeftRelease;
     private DuckCommand buttonDuck;
     private MoveRightCommand buttonMoveRight;
+    private MoveRightReleaseCommand buttonMoveRightRelease;
 
     private NullCommand buttonNull;
     
 
     public Command HandleInput()
     {
-        var kstate = Keyboard.GetState();
+        KeyboardHandler.GetState();
 
         buttonNull = new NullCommand();
         buttonAttack = new AttackCommand();
         buttonJump = new JumpCommand();
         buttonMoveLeft = new MoveLeftCommand();
+        buttonMoveLeftRelease = new MoveLeftReleaseCommand();
         buttonDuck = new DuckCommand();
         buttonMoveRight = new MoveRightCommand();
+        buttonMoveRightRelease = new MoveRightReleaseCommand();
         
-        if (kstate.IsKeyDown(Keys.OemPeriod)) { return buttonAttack; }
-        if (kstate.IsKeyDown(Keys.Up)) { return buttonJump; }
-        if (kstate.IsKeyDown(Keys.Left)) { return buttonMoveLeft; }
-        if (kstate.IsKeyDown(Keys.Down)) { return buttonDuck; }
-        if (kstate.IsKeyDown(Keys.Right)) { return buttonMoveRight; }
+        if (KeyboardState.Shot(GameSettings.InputPlayer2.attack))
+        { return buttonAttack; }
+
+        if (KeyboardState.Shot(GameSettings.InputPlayer2.jump)) 
+        { return buttonJump; }
+
+        if (KeyboardState.Shot(GameSettings.InputPlayer2.moveLeft)) 
+        { return buttonMoveLeft; }
+        if (KeyboardState.Released(GameSettings.InputPlayer2.moveLeft)) 
+        { return buttonMoveLeftRelease; }
+
+        if (KeyboardState.Shot(GameSettings.InputPlayer2.duck)) 
+        { return buttonDuck; }
+
+        if (KeyboardState.Shot(GameSettings.InputPlayer2.moveRight)) 
+        { return buttonMoveRight; }
+        if (KeyboardState.Released(GameSettings.InputPlayer2.moveRight)) 
+        { return buttonMoveRightRelease; }
         
         return buttonNull;
     }

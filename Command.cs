@@ -53,6 +53,19 @@ public class DuckCommand : Command
     }
 }
 
+public class DuckReleaseCommand : Command
+{
+    public override void execute(Character character)
+    {
+        switch (character.state)
+        {
+            case Character.State.Duck:
+                character.Idle();
+                break;
+        }
+    }
+}
+
 public class IdleCommand : Command
 {
     public override void execute(Character character)
@@ -110,6 +123,19 @@ public class MoveRightCommand : Command
     }
 }
 
+public class MoveRightReleaseCommand : Command
+{
+    public override void execute(Character character)
+    {
+        switch (character.state)
+        {
+            case Character.State.RunningRight:
+                character.MoveRight(true);
+                break;
+        }
+    }
+}
+
 public class MoveLeftCommand : Command
 {
     public override void execute(Character character)
@@ -124,6 +150,19 @@ public class MoveLeftCommand : Command
                 break;
             case Character.State.Ducking:
                 character.MoveLeft();
+                break;
+        }
+    }
+}
+
+public class MoveLeftReleaseCommand : Command
+{
+    public override void execute(Character character)
+    {
+        switch (character.state)
+        {
+            case Character.State.RunningLeft:
+                character.MoveLeft(true);
                 break;
         }
     }
