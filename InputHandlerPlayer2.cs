@@ -32,23 +32,23 @@ public class InputHandlerPlayer2
         buttonMoveRight = new MoveRightCommand();
         buttonMoveRightRelease = new MoveRightReleaseCommand();
         
-        if (KeyboardState.Shot(GameSettings.InputPlayer2.attack))
+        if (KeyboardHandler.Shot(GameSettings.InputPlayer2.attack))
         { return buttonAttack; }
 
-        if (KeyboardState.Shot(GameSettings.InputPlayer2.jump)) 
+        if (KeyboardHandler.Shot(GameSettings.InputPlayer2.jump)) 
         { return buttonJump; }
 
-        if (KeyboardState.Shot(GameSettings.InputPlayer2.moveLeft)) 
+        if (KeyboardHandler.Shot(GameSettings.InputPlayer2.moveLeft)) 
         { return buttonMoveLeft; }
-        if (KeyboardState.Released(GameSettings.InputPlayer2.moveLeft)) 
+        if (KeyboardHandler.Released(GameSettings.InputPlayer2.moveLeft)) 
         { return buttonMoveLeftRelease; }
 
-        if (KeyboardState.Shot(GameSettings.InputPlayer2.duck)) 
+        if (KeyboardHandler.Shot(GameSettings.InputPlayer2.duck)) 
         { return buttonDuck; }
 
-        if (KeyboardState.Shot(GameSettings.InputPlayer2.moveRight)) 
+        if (KeyboardHandler.Shot(GameSettings.InputPlayer2.moveRight)) 
         { return buttonMoveRight; }
-        if (KeyboardState.Released(GameSettings.InputPlayer2.moveRight)) 
+        if (KeyboardHandler.Released(GameSettings.InputPlayer2.moveRight)) 
         { return buttonMoveRightRelease; }
         
         return buttonNull;

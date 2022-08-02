@@ -31,23 +31,23 @@ public class InputHandlerPlayer1
         buttonMoveRight = new MoveRightCommand();
         buttonMoveRightRelease = new MoveRightReleaseCommand();
 
-        if (KeyboardState.Shot(GameSettings.InputPlayer1.attack))
+        if (KeyboardHandler.Shot(GameSettings.InputPlayer1.attack))
         { return buttonAttack; }
 
-        if (KeyboardState.Shot(GameSettings.InputPlayer1.jump)) 
+        if (KeyboardHandler.Shot(GameSettings.InputPlayer1.jump)) 
         { return buttonJump; }
 
-        if (KeyboardState.Shot(GameSettings.InputPlayer1.moveLeft)) 
+        if (KeyboardHandler.Shot(GameSettings.InputPlayer1.moveLeft)) 
         { return buttonMoveLeft; }
-        if (KeyboardState.Released(GameSettings.InputPlayer1.moveLeft)) 
+        if (KeyboardHandler.Released(GameSettings.InputPlayer1.moveLeft)) 
         { return buttonMoveLeftRelease; }
 
-        if (KeyboardState.Shot(GameSettings.InputPlayer1.duck)) 
+        if (KeyboardHandler.Shot(GameSettings.InputPlayer1.duck)) 
         { return buttonDuck; }
 
-        if (KeyboardState.Shot(GameSettings.InputPlayer1.moveRight)) 
+        if (KeyboardHandler.Shot(GameSettings.InputPlayer1.moveRight)) 
         { return buttonMoveRight; }
-        if (KeyboardState.Released(GameSettings.InputPlayer1.moveRight)) 
+        if (KeyboardHandler.Released(GameSettings.InputPlayer1.moveRight)) 
         { return buttonMoveRightRelease; }
         
         return buttonNull;

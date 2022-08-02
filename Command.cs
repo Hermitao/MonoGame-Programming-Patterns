@@ -59,7 +59,7 @@ public class DuckReleaseCommand : Command
     {
         switch (character.state)
         {
-            case Character.State.Duck:
+            case Character.State.Ducking:
                 character.Idle();
                 break;
         }
@@ -108,6 +108,8 @@ public class MoveRightCommand : Command
 {
     public override void execute(Character character)
     {
+        character.PressingRight = true;
+
         switch (character.state)
         {
             case Character.State.Idle:
@@ -127,6 +129,8 @@ public class MoveRightReleaseCommand : Command
 {
     public override void execute(Character character)
     {
+        character.PressingRight = false;
+
         switch (character.state)
         {
             case Character.State.RunningRight:
@@ -140,6 +144,8 @@ public class MoveLeftCommand : Command
 {
     public override void execute(Character character)
     {
+        character.PressingLeft = true;
+
         switch (character.state)
         {
             case Character.State.Idle:
@@ -159,6 +165,8 @@ public class MoveLeftReleaseCommand : Command
 {
     public override void execute(Character character)
     {
+        character.PressingLeft = false;
+
         switch (character.state)
         {
             case Character.State.RunningLeft:
@@ -170,22 +178,22 @@ public class MoveLeftReleaseCommand : Command
 
 public class NullCommand : Command
 {
-    public override void execute(Character character) 
-    {
-        switch (character.state)
-        {
-            case Character.State.RunningRight:
-                character.Idle();
-                break;
-            case Character.State.RunningLeft:
-                character.Idle();
-                break;
-            case Character.State.Ducking:
-                character.Idle();
-                break;
-            case Character.State.Attacking:
-                character.Idle();
-                break;
-        }
-    }
+    // public override void execute(Character character) 
+    // {
+    //     switch (character.state)
+    //     {
+    //         case Character.State.RunningRight:
+    //             character.Idle();
+    //             break;
+    //         case Character.State.RunningLeft:
+    //             character.Idle();
+    //             break;
+    //         case Character.State.Ducking:
+    //             character.Idle();
+    //             break;
+    //         case Character.State.Attacking:
+    //             character.Idle();
+    //             break;
+    //     }
+    // }
 }

@@ -20,9 +20,34 @@ public class Character : Entity
     public float jumpVelocity = 9f;
     public Vector2 currentVelocity;
     public State state;
+    public bool PressingRight 
+    { 
+        get
+        {
+            return pressingRight;
+        } 
+        
+        set
+        {
+            pressingRight = value;
+        }
+    }
+    public bool PressingLeft 
+    {
+        get
+        {
+            return pressingLeft;
+        } 
+        set
+        {
+            pressingLeft = value;
+        } 
+    }
+
 
     private float initialXScale;
-
+    
+    
     private bool pressingRight = false;
     private bool pressingLeft = false;
 
@@ -54,11 +79,11 @@ public class Character : Entity
             switch (state)
             {
                 case State.Jumping:
-                    if (currentVelocity.X > 0.1f)
+                    if (pressingRight)
                     {
                         MoveRight();
                     }
-                    else if (currentVelocity.X < 0.1f)
+                    else if (pressingLeft)
                     {
                         MoveLeft();
                     }
@@ -113,11 +138,19 @@ public class Character : Entity
 
     public void MoveRight(bool releasedCommand = false)
     {
-        if (releasedCommand && pressingLeft)
+        if (releasedCommand)
         {
-            MoveLeft();
+            if (pressingLeft)
+            {
+                MoveLeft();
+            }
+            else
+            {
+                Idle();
+            }
             return;
         }
+
         state = State.RunningRight;
         animatedSprite.MinFrame = 8;
         animatedSprite.MaxFrame = 13;
@@ -129,11 +162,19 @@ public class Character : Entity
 
     public void MoveLeft(bool releasedCommand = false)
     {
-        if (releasedCommand && pressingRight)
+        if (releasedCommand)
         {
-            MoveRight();
+            if (pressingRight)
+            {
+                MoveRight();
+            }
+            else
+            {
+                Idle();
+            }
             return;
         }
+
         state = State.RunningLeft;
         animatedSprite.MinFrame = 8;
         animatedSprite.MaxFrame = 13;
