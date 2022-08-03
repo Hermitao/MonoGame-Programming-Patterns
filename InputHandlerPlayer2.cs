@@ -18,7 +18,6 @@ public class InputHandlerPlayer2
 
     private NullCommand buttonNull;
     
-
     public Command HandleInput()
     {
         KeyboardHandler.GetState();

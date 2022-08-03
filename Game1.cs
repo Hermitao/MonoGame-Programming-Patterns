@@ -19,14 +19,17 @@ public class Game1 : Game
 
     private InputHandlerPlayer1 inputHandlerPlayer1;
     private InputHandlerPlayer2 inputHandlerPlayer2;
-    private Player player1;
-    private Player player2;
+    private Character player1;
+    private Character player2;
+
+    private List<Actor> actors = new List<Actor>();
 
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+
     }
 
     protected override void Initialize()
@@ -46,16 +49,19 @@ public class Game1 : Game
         texture = Content.Load<Texture2D>("Individual Sprites/adventurer-run-00");
         atlas = Content.Load<Texture2D>("adventurer-Sheet");
 
-        player1 = new Player(
+        player1 = new Character(
             atlas, 
             11, 7, 
             position, 
             new Vector2(2f, 2f));
-        player2 = new Player(
+        player2 = new Character(
             atlas, 
             11, 7, 
             position + new Vector2(50f, 0f), 
             new Vector2(2f, 2f));
+
+        actors.Add(player1);
+        actors.Add(player2);
 
         inputHandlerPlayer1 = new InputHandlerPlayer1();
         inputHandlerPlayer2 = new InputHandlerPlayer2();
@@ -81,36 +87,11 @@ public class Game1 : Game
 
         commandPlayer1.execute(player1);
         commandPlayer2.execute(player2);
-        player1.Update(deltaTime);
-        player2.Update(deltaTime);
 
-        // if (kstate.IsKeyDown(Keys.Left))
-        // {
-        //     position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-        // }
-
-        // if(kstate.IsKeyDown(Keys.Right))
-        // {
-        //     position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-        // }
-
-        // if(position.X > _graphics.PreferredBackBufferWidth - texture.Width * 2 / 2)
-        // {
-        //     position.X = _graphics.PreferredBackBufferWidth - texture.Width * 2 / 2;
-        // }
-        // else if(position.X < texture.Width / 2)
-        // {
-        //     position.X = texture.Width / 2;
-        // }
-
-        // if(position.Y > _graphics.PreferredBackBufferHeight - texture.Height * 2 / 2)
-        // {
-        //     position.Y = _graphics.PreferredBackBufferHeight - texture.Height * 2 / 2;
-        // }
-        // else if(position.Y < texture.Height / 2)
-        // {
-        //     position.Y = texture.Height / 2;
-        // }
+        foreach (Actor actor in actors)
+        {
+            actor.Update(deltaTime);
+        }
 
         base.Update(gameTime);
     }

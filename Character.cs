@@ -94,6 +94,8 @@ public class Character : Entity
                     break;
             }
         }
+
+        base.Update(deltaTime);
     }
 
     public void Attack()
