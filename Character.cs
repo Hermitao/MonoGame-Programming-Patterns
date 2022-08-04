@@ -66,8 +66,6 @@ public class Character : Entity
 
     public override void Update(float deltaTime)
     {
-        animatedSprite.Update(deltaTime);
-
         currentVelocity = currentVelocity + WorldSettings.gravity * deltaTime;
 
         Position += currentVelocity;

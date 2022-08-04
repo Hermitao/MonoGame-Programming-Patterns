@@ -80,6 +80,8 @@ public class Game1 : Game
             Exit();
 
         // TODO: Add your update logic here
+        KeyboardHandler.GetState();
+        
         Command commandPlayer1 = inputHandlerPlayer1.HandleInput();
         Command commandPlayer2 = inputHandlerPlayer2.HandleInput();
 

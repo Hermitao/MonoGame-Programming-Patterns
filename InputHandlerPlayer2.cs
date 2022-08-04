@@ -13,6 +13,7 @@ public class InputHandlerPlayer2
     private MoveLeftCommand buttonMoveLeft;
     private MoveLeftReleaseCommand buttonMoveLeftRelease;
     private DuckCommand buttonDuck;
+    private DuckReleaseCommand buttonDuckRelease;
     private MoveRightCommand buttonMoveRight;
     private MoveRightReleaseCommand buttonMoveRightRelease;
 
@@ -20,14 +21,13 @@ public class InputHandlerPlayer2
     
     public Command HandleInput()
     {
-        KeyboardHandler.GetState();
-
         buttonNull = new NullCommand();
         buttonAttack = new AttackCommand();
         buttonJump = new JumpCommand();
         buttonMoveLeft = new MoveLeftCommand();
         buttonMoveLeftRelease = new MoveLeftReleaseCommand();
         buttonDuck = new DuckCommand();
+        buttonDuckRelease = new DuckReleaseCommand();
         buttonMoveRight = new MoveRightCommand();
         buttonMoveRightRelease = new MoveRightReleaseCommand();
         
@@ -44,6 +44,8 @@ public class InputHandlerPlayer2
 
         if (KeyboardHandler.Shot(GameSettings.InputPlayer2.duck)) 
         { return buttonDuck; }
+        if (KeyboardHandler.Released(GameSettings.InputPlayer2.duck)) 
+        { return buttonDuckRelease; }
 
         if (KeyboardHandler.Shot(GameSettings.InputPlayer2.moveRight)) 
         { return buttonMoveRight; }
