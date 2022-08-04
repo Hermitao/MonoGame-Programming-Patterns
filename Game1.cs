@@ -22,6 +22,8 @@ public class Game1 : Game
     private Character player1;
     private Character player2;
 
+    
+
     private List<Actor> actors = new List<Actor>();
 
     public Game1()
@@ -41,8 +43,24 @@ public class Game1 : Game
         inputHandlerPlayer1 = new InputHandlerPlayer1();
         inputHandlerPlayer2 = new InputHandlerPlayer2();
 
-        actors.Add(player1);
-        actors.Add(player2);
+
+        Character npc1 = new Character(
+            atlas,
+            11, 7,
+            position + new Vector2(-50f, 0f), 
+            new Vector2(2f, 2f));
+        AI_Swordsman ai_swordsman = new AI_Swordsman(npc1);
+        npc1.components.Add(ai_swordsman)
+        actors.add(npc1);
+
+        Character npc2 = new Character(
+            atlas,
+            11, 7,
+            position + new Vector2(-100f, 0f), 
+            new Vector2(2f, 2f));
+        AI_Ducker ai_ducker = new AI_Ducker(npc2);
+        npc2.components.Add(ai_ducker)
+        actors.add(npc2);
 
         base.Initialize();
     }
@@ -65,6 +83,9 @@ public class Game1 : Game
             11, 7, 
             position + new Vector2(50f, 0f), 
             new Vector2(2f, 2f));
+
+        actors.Add(player1);
+        actors.Add(player2);
     }
 
     protected override void UnloadContent()
@@ -80,12 +101,11 @@ public class Game1 : Game
             Exit();
 
         // TODO: Add your update logic here
+        float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
         KeyboardHandler.GetState();
         
         Command commandPlayer1 = inputHandlerPlayer1.HandleInput();
         Command commandPlayer2 = inputHandlerPlayer2.HandleInput();
-
-        float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         commandPlayer1.execute(player1);
         commandPlayer2.execute(player2);
@@ -103,8 +123,10 @@ public class Game1 : Game
         GraphicsDevice.Clear(new Color(0.1f, 0.1f, 0.1f));
 
         // TODO: Add your drawing code here
-        player1.Draw(_spriteBatch);
-        player2.Draw(_spriteBatch);
+        foreach (Entity entity in actors)
+        {
+            entity.Draw(_spriteBatch);
+        }
 
         base.Draw(gameTime);
     }

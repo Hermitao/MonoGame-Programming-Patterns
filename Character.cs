@@ -16,6 +16,7 @@ public class Character : Entity
         Attacking
     }
 
+    public List<Component> components;
     public float speed = 4f;
     public float jumpVelocity = 9f;
     public Vector2 currentVelocity;
@@ -60,6 +61,7 @@ public class Character : Entity
         animatedSprite = new AnimatedSprite(spriteSheet, rows, columns);
         currentVelocity = new Vector2(0, 0);
         this.initialXScale = scale.Value.X;
+        components = new List<Component>();
 
         Idle();
     }
@@ -91,6 +93,11 @@ public class Character : Entity
                     }
                     break;
             }
+        }
+
+        foreach (Component component in components)
+        {
+            component.Update();
         }
 
         base.Update(deltaTime);
