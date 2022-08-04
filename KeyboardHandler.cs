@@ -1,29 +1,32 @@
 using Microsoft.Xna.Framework.Input;
 
-public static class KeyboardHandler
+namespace IroncladSewing
 {
-    static KeyboardState currentKeyState;
-    static KeyboardState previousKeyState;
-
-    public static KeyboardState GetState()
+    public static class KeyboardHandler
     {
-        previousKeyState = currentKeyState;
-        currentKeyState = Keyboard.GetState();
-        return currentKeyState;
-    }
+        static KeyboardState currentKeyState;
+        static KeyboardState previousKeyState;
 
-    public static bool Held(Keys key)
-    {
-        return currentKeyState.IsKeyDown(key);
-    }
+        public static KeyboardState GetState()
+        {
+            previousKeyState = currentKeyState;
+            currentKeyState = Keyboard.GetState();
+            return currentKeyState;
+        }
 
-    public static bool Shot(Keys key)
-    {
-        return currentKeyState.IsKeyDown(key) && !previousKeyState.IsKeyDown(key);
-    }
+        public static bool Held(Keys key)
+        {
+            return currentKeyState.IsKeyDown(key);
+        }
 
-    public static bool Released(Keys key)
-    {
-        return !currentKeyState.IsKeyDown(key) && previousKeyState.IsKeyDown(key);
+        public static bool Shot(Keys key)
+        {
+            return currentKeyState.IsKeyDown(key) && !previousKeyState.IsKeyDown(key);
+        }
+
+        public static bool Released(Keys key)
+        {
+            return !currentKeyState.IsKeyDown(key) && previousKeyState.IsKeyDown(key);
+        }
     }
 }

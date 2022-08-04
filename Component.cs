@@ -1,9 +1,12 @@
 using Microsoft.Xna.Framework;
 
-public class Component 
+namespace IroncladSewing
 {
-    public virtual void Update(float deltaTime)
+    public class Component 
     {
+        public virtual void Update(float deltaTime)
+        {
 
+        }
     }
 }

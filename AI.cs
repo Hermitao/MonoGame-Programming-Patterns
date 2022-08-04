@@ -1,20 +1,27 @@
-public class AI : Component
+using Microsoft.Xna.Framework;
+
+namespace IroncladSewing
 {
-    private Character parent;
-    public Character Parent
+    public class AI : Component
     {
-        get
+        private Character parent;
+        public Character Parent
         {
-            return parent;
+            get
+            {
+                return parent;
+            }
+            set
+            {
+                parent = value;
+            }
         }
-        set
+        
+        public AI(Character controlledCharacter)
         {
-            parent = value;
+            this.parent = controlledCharacter;
         }
-    }
-    
-    public AI(Character controlledCharacter)
-    {
-        this.parent = controlledCharacter;
+
+        public virtual void FollowTarget(Entity entity) {}
     }
 }
