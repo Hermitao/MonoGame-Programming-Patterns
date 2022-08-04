@@ -38,6 +38,12 @@ public class Game1 : Game
         position = new Vector2(_graphics.PreferredBackBufferWidth / 2,
             _graphics.PreferredBackBufferHeight / 2);
 
+        inputHandlerPlayer1 = new InputHandlerPlayer1();
+        inputHandlerPlayer2 = new InputHandlerPlayer2();
+
+        actors.Add(player1);
+        actors.Add(player2);
+
         base.Initialize();
     }
 
@@ -59,12 +65,6 @@ public class Game1 : Game
             11, 7, 
             position + new Vector2(50f, 0f), 
             new Vector2(2f, 2f));
-
-        actors.Add(player1);
-        actors.Add(player2);
-
-        inputHandlerPlayer1 = new InputHandlerPlayer1();
-        inputHandlerPlayer2 = new InputHandlerPlayer2();
     }
 
     protected override void UnloadContent()
