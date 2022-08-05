@@ -1,36 +1,52 @@
+using System;
 using Microsoft.Xna.Framework;
 
 namespace IroncladSewing
 {
     public class AI_Swordsman : AI
     {
-        public AI_Swordsman(Character controlledCharacter) 
-            : base(controlledCharacter) {}
+        private Entity targetEntity;
+
+        public AI_Swordsman(Character controlledCharacter, Entity targetEntity) 
+            : base(controlledCharacter) 
+        {
+            this.targetEntity = targetEntity;
+        }
 
         public override void Update(float gameTime)
         {
-            this.FollowTarget();
+            this.FollowTarget(targetEntity);
         }
 
         public override void FollowTarget(Entity entity)
         {
-            float followDistance = 50;
-            if (parent.Position.X < entity.Position.X - followDistance)
+            Command command = new IdleCommand();
+
+            float followDistance = 50f;
+            float followDistanceOffset = 150f;
+            if (ParentCharacter.Position.X < entity.Position.X - followDistance - followDistanceOffset)
             {
-                character.MoveRight();
+                command = new MoveRightCommand();
             }
-            if (parent.Position.X > entity.Position.X + followDistance)
+            if (ParentCharacter.Position.X > entity.Position.X + followDistance + followDistanceOffset)
             {
-                character.MoveLeft();
+                command = new MoveLeftCommand();
             }
             
             float horizontalDistance = 
-                Math.Abs(parent.Position.X - entity.Position.X);
+                Math.Abs(ParentCharacter.Position.X - entity.Position.X);
 
             if (horizontalDistance <= followDistance)
             {
-                character.Idle();
+                command = new MoveRightReleaseCommand();
+                command.execute(ParentCharacter);
+                command = new MoveLeftReleaseCommand();
+                command.execute(ParentCharacter);
+                command = new IdleCommand();
+                command.execute(ParentCharacter);
             }
+
+            command.execute(ParentCharacter);
         }
     }
 }

@@ -99,7 +99,7 @@ namespace IroncladSewing
 
             foreach (Component component in components)
             {
-                component.Update();
+                component.Update(deltaTime);
             }
 
             base.Update(deltaTime);

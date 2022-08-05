@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace MonoGame_Programming_Patterns;
+// namespace MonoGame_Programming_Patterns;
 
 namespace IroncladSewing
 {
@@ -42,26 +42,7 @@ namespace IroncladSewing
 
             inputHandlerPlayer1 = new InputHandlerPlayer1();
             inputHandlerPlayer2 = new InputHandlerPlayer2();
-
-
-            Character npc1 = new Character(
-                atlas,
-                11, 7,
-                position + new Vector2(-50f, 0f), 
-                new Vector2(2f, 2f));
-            AI_Swordsman ai_swordsman = new AI_Swordsman(npc1);
-            npc1.components.Add(ai_swordsman)
-            actors.add(npc1);
-
-            Character npc2 = new Character(
-                atlas,
-                11, 7,
-                position + new Vector2(-100f, 0f), 
-                new Vector2(2f, 2f));
-            AI_Ducker ai_ducker = new AI_Ducker(npc2);
-            npc2.components.Add(ai_ducker)
-            actors.add(npc2);
-
+            
             base.Initialize();
         }
 
@@ -86,6 +67,25 @@ namespace IroncladSewing
 
             actors.Add(player1);
             actors.Add(player2);
+
+            Character npc1 = new Character(
+                atlas,
+                11, 7,
+                position + new Vector2(-50f, 0f), 
+                new Vector2(2f, 2f));
+            AI_Swordsman ai_swordsman = new AI_Swordsman(npc1, player1);
+            npc1.components.Add(ai_swordsman);
+            actors.Add(npc1);
+
+            Character npc2 = new Character(
+                atlas,
+                11, 7,
+                position + new Vector2(-100f, 0f), 
+                new Vector2(2f, 2f));
+            AI_Ducker ai_ducker = new AI_Ducker(npc2);
+            npc2.components.Add(ai_ducker);
+            actors.Add(npc2);
+
         }
 
         protected override void UnloadContent()
