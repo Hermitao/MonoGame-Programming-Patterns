@@ -82,10 +82,9 @@ namespace IroncladSewing
                 11, 7,
                 position + new Vector2(-100f, 0f), 
                 new Vector2(2f, 2f));
-            AI_Ducker ai_ducker = new AI_Ducker(npc2);
-            npc2.components.Add(ai_ducker);
+            AI_Swordsman ai_swordsman2 = new AI_Swordsman(npc2, npc1);
+            npc2.components.Add(ai_swordsman2);
             actors.Add(npc2);
-
         }
 
         protected override void UnloadContent()

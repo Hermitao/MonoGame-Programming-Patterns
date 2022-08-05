@@ -23,7 +23,7 @@ namespace IroncladSewing
             Command command = new IdleCommand();
 
             float followDistance = 50f;
-            float followDistanceOffset = 150f;
+            float followDistanceOffset = 50f;
             if (ParentCharacter.Position.X < entity.Position.X - followDistance - followDistanceOffset)
             {
                 command = new MoveRightCommand();
