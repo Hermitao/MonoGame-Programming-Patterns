@@ -19,8 +19,6 @@ namespace IroncladSewing
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private InputHandlerPlayer1 inputHandlerPlayer1;
-        private InputHandlerPlayer2 inputHandlerPlayer2;
         private Character player0;
         private Character player1;
 
@@ -39,9 +37,6 @@ namespace IroncladSewing
             // TODO: Add your initialization logic here
             position = new Vector2(_graphics.PreferredBackBufferWidth / 2,
                 _graphics.PreferredBackBufferHeight / 2);
-
-            inputHandlerPlayer1 = new InputHandlerPlayer1();
-            inputHandlerPlayer2 = new InputHandlerPlayer2();
             
             base.Initialize();
         }
