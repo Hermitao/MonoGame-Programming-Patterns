@@ -9,7 +9,7 @@ namespace IroncladSewing
 
         public override void Update(float gameTime)
         {
-            ParentCharacter.Duck();
+            ControlledCharacter.Duck();
         }
     }
 }

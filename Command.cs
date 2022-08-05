@@ -19,21 +19,30 @@ namespace IroncladSewing
     {
         public override void execute(Character character)
         {
-            switch (character.state)
-            {
-                case Character.State.Idle:
-                    character.Attack();
-                    break;
-                case Character.State.Ducking:
-                    character.Attack();
-                    break;
-                case Character.State.RunningRight:
-                    character.Attack();
-                    break;
-                case Character.State.RunningLeft:
-                    character.Attack();
-                    break;
-            }
+            character.Attack();
+            // switch (character.state)
+            // {
+            //     case Character.State.Idle:
+            //         character.Attack();
+            //         break;
+            //     case Character.State.Ducking:
+            //         character.Attack();
+            //         break;
+            //     case Character.State.RunningRight:
+            //         character.Attack();
+            //         break;
+            //     case Character.State.RunningLeft:
+            //         character.Attack();
+            //         break;
+            // }
+        }
+    }
+
+    public class AttackReleaseCommand : Command
+    {
+        public override void execute(Character character)
+        {
+            character.Idle();
         }
     }
 
@@ -41,18 +50,19 @@ namespace IroncladSewing
     {
         public override void execute(Character character)
         {
-            switch (character.state)
-            {
-                case Character.State.Idle:
-                    character.Duck();
-                    break;
-                case Character.State.RunningRight:
-                    character.Duck();
-                    break;
-                case Character.State.RunningLeft:
-                    character.Duck();
-                    break;
-            }
+            character.Duck();
+            // switch (character.state)
+            // {
+            //     case Character.State.Idle:
+            //         character.Duck();
+            //         break;
+            //     case Character.State.RunningRight:
+            //         character.Duck();
+            //         break;
+            //     case Character.State.RunningLeft:
+            //         character.Duck();
+            //         break;
+            // }
         }
     }
 
@@ -60,12 +70,13 @@ namespace IroncladSewing
     {
         public override void execute(Character character)
         {
-            switch (character.state)
-            {
-                case Character.State.Ducking:
-                    character.Idle();
-                    break;
-            }
+            character.Idle();
+            // switch (character.state)
+            // {
+            //     case Character.State.Ducking:
+            //         character.Idle();
+            //         break;
+            // }
         }
     }
 
@@ -73,15 +84,16 @@ namespace IroncladSewing
     {
         public override void execute(Character character)
         {
-            switch (character.state)
-            {
-                case Character.State.Jumping:
-                    character.Idle();
-                    break;
-                case Character.State.Ducking:
-                    character.Idle();
-                    break;
-            }
+            character.Idle();
+            // switch (character.state)
+            // {
+            //     case Character.State.Jumping:
+            //         character.Idle();
+            //         break;
+            //     case Character.State.Ducking:
+            //         character.Idle();
+            //         break;
+            // }
         }
     }
 
@@ -89,21 +101,22 @@ namespace IroncladSewing
     {
         public override void execute(Character character)
         {
-            switch (character.state)
-            {
-                case Character.State.Idle:
-                    character.Jump();
-                    break;
-                case Character.State.RunningRight:
-                    character.Jump();
-                    break;
-                case Character.State.RunningLeft:
-                    character.Jump();
-                    break;
-                case Character.State.Ducking:
-                    character.Jump();
-                    break;
-            }
+            character.Jump();
+            // switch (character.state)
+            // {
+            //     case Character.State.Idle:
+            //         character.Jump();
+            //         break;
+            //     case Character.State.RunningRight:
+            //         character.Jump();
+            //         break;
+            //     case Character.State.RunningLeft:
+            //         character.Jump();
+            //         break;
+            //     case Character.State.Ducking:
+            //         character.Jump();
+            //         break;
+            // }
         }
     }
 
@@ -112,19 +125,20 @@ namespace IroncladSewing
         public override void execute(Character character)
         {
             character.PressingRight = true;
+            character.MoveRight();
 
-            switch (character.state)
-            {
-                case Character.State.Idle:
-                    character.MoveRight();
-                    break;
-                case Character.State.RunningLeft:
-                    character.MoveRight();
-                    break;
-                case Character.State.Ducking:
-                    character.MoveRight();
-                    break;
-            }
+            // switch (character.state)
+            // {
+            //     case Character.State.Idle:
+            //         character.MoveRight();
+            //         break;
+            //     case Character.State.RunningLeft:
+            //         character.MoveRight();
+            //         break;
+            //     case Character.State.Ducking:
+            //         character.MoveRight();
+            //         break;
+            // }
         }
     }
 
@@ -133,13 +147,14 @@ namespace IroncladSewing
         public override void execute(Character character)
         {
             character.PressingRight = false;
+            character.MoveRight(true);
 
-            switch (character.state)
-            {
-                case Character.State.RunningRight:
-                    character.MoveRight(true);
-                    break;
-            }
+            // switch (character.state)
+            // {
+            //     case Character.State.RunningRight:
+            //         character.MoveRight(true);
+            //         break;
+            // }
         }
     }
 
@@ -148,19 +163,20 @@ namespace IroncladSewing
         public override void execute(Character character)
         {
             character.PressingLeft = true;
+            character.MoveLeft();
 
-            switch (character.state)
-            {
-                case Character.State.Idle:
-                    character.MoveLeft();
-                    break;
-                case Character.State.RunningRight:
-                    character.MoveLeft();
-                    break;
-                case Character.State.Ducking:
-                    character.MoveLeft();
-                    break;
-            }
+            // switch (character.state)
+            // {
+            //     case Character.State.Idle:
+            //         character.MoveLeft();
+            //         break;
+            //     case Character.State.RunningRight:
+            //         character.MoveLeft();
+            //         break;
+            //     case Character.State.Ducking:
+            //         character.MoveLeft();
+            //         break;
+            // }
         }
     }
 
@@ -169,13 +185,14 @@ namespace IroncladSewing
         public override void execute(Character character)
         {
             character.PressingLeft = false;
+            character.MoveLeft(true);
 
-            switch (character.state)
-            {
-                case Character.State.RunningLeft:
-                    character.MoveLeft(true);
-                    break;
-            }
+            // switch (character.state)
+            // {
+            //     case Character.State.RunningLeft:
+            //         character.MoveLeft(true);
+            //         break;
+            // }
         }
     }
 

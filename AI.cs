@@ -4,22 +4,22 @@ namespace IroncladSewing
 {
     public class AI : Component
     {
-        private Character parentCharacter;
-        public Character ParentCharacter
+        private Character controlledCharacter;
+        public Character ControlledCharacter
         {
             get
             {
-                return parentCharacter;
+                return controlledCharacter;
             }
             set
             {
-                parentCharacter = value;
+                controlledCharacter = value;
             }
         }
         
         public AI(Character controlledCharacter)
         {
-            this.parentCharacter = controlledCharacter;
+            this.controlledCharacter = controlledCharacter;
         }
 
         public virtual void FollowTarget(Entity entity) {}

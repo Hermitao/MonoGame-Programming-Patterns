@@ -21,8 +21,8 @@ namespace IroncladSewing
 
         private InputHandlerPlayer1 inputHandlerPlayer1;
         private InputHandlerPlayer2 inputHandlerPlayer2;
+        private Character player0;
         private Character player1;
-        private Character player2;
 
         private List<Actor> actors = new List<Actor>();
 
@@ -54,37 +54,43 @@ namespace IroncladSewing
             texture = Content.Load<Texture2D>("Individual Sprites/adventurer-run-00");
             atlas = Content.Load<Texture2D>("adventurer-Sheet");
 
-            player1 = new Character(
+            player0 = new Character(
                 atlas, 
                 11, 7, 
                 position, 
                 new Vector2(2f, 2f));
-            player2 = new Character(
+            Player player1Component = new Player(player0, 0);
+            player0.Add(player1Component);
+
+            player1 = new Character(
                 atlas, 
                 11, 7, 
                 position + new Vector2(50f, 0f), 
                 new Vector2(2f, 2f));
+            Player player2Component = new Player(player1, 1);
+            player0.Add(player2Component);
 
+            actors.Add(player0);
             actors.Add(player1);
-            actors.Add(player2);
 
-            Character npc1 = new Character(
+
+            Character npc0 = new Character(
                 atlas,
                 11, 7,
                 position + new Vector2(-50f, 0f), 
                 new Vector2(2f, 2f));
-            AI_Swordsman ai_swordsman = new AI_Swordsman(npc1, player1);
-            npc1.components.Add(ai_swordsman);
-            actors.Add(npc1);
+            AI_Swordsman ai_swordsman = new AI_Swordsman(npc0, player0);
+            npc0.components.Add(ai_swordsman);
+            actors.Add(npc0);
 
-            Character npc2 = new Character(
+            Character npc1 = new Character(
                 atlas,
                 11, 7,
                 position + new Vector2(-100f, 0f), 
                 new Vector2(2f, 2f));
-            AI_Swordsman ai_swordsman2 = new AI_Swordsman(npc2, npc1);
-            npc2.components.Add(ai_swordsman2);
-            actors.Add(npc2);
+            AI_Swordsman ai_swordsman2 = new AI_Swordsman(npc1, npc0);
+            npc1.components.Add(ai_swordsman2);
+            actors.Add(npc1);
         }
 
         protected override void UnloadContent()
@@ -94,7 +100,6 @@ namespace IroncladSewing
 
         protected override void Update(GameTime gameTime)
         {
-            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back 
             == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -103,11 +108,11 @@ namespace IroncladSewing
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             KeyboardHandler.GetState();
             
-            Command commandPlayer1 = inputHandlerPlayer1.HandleInput();
-            Command commandPlayer2 = inputHandlerPlayer2.HandleInput();
+            // Command commandPlayer1 = inputHandlerPlayer1.HandleInput();
+            // Command commandPlayer2 = inputHandlerPlayer2.HandleInput();
 
-            commandPlayer1.execute(player1);
-            commandPlayer2.execute(player2);
+            // commandPlayer1.execute(player0);
+            // commandPlayer2.execute(player1);
 
             foreach (Actor actor in actors)
             {

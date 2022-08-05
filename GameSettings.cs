@@ -10,22 +10,16 @@ namespace IroncladSewing
 {
     public static class GameSettings
     {
-        public static class InputPlayer1
-        {
-            public static Keys attack = Keys.F;
-            public static Keys jump = Keys.W;
-            public static Keys moveRight = Keys.D;
-            public static Keys moveLeft = Keys.A;
-            public static Keys duck = Keys.S;
-        }
+        public static Keys attack0 = Keys.F;
+        public static Keys jump0 = Keys.W;
+        public static Keys moveRight0 = Keys.D;
+        public static Keys moveLeft0 = Keys.A;
+        public static Keys duck0 = Keys.S;
 
-        public static class InputPlayer2
-        {
-            public static Keys attack = Keys.OemPeriod;
-            public static Keys jump = Keys.Up;
-            public static Keys moveRight = Keys.Right;
-            public static Keys moveLeft = Keys.Left;
-            public static Keys duck = Keys.Down;
-        }
+        public static Keys attack1 = Keys.OemPeriod;
+        public static Keys jump1 = Keys.Up;
+        public static Keys moveRight1 = Keys.Right;
+        public static Keys moveLeft1 = Keys.Left;
+        public static Keys duck1 = Keys.Down;
     }
 }

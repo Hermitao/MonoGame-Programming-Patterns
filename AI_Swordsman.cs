@@ -24,29 +24,28 @@ namespace IroncladSewing
 
             float followDistance = 50f;
             float followDistanceOffset = 50f;
-            if (ParentCharacter.Position.X < entity.Position.X - followDistance - followDistanceOffset)
+            if (ControlledCharacter.Position.X < entity.Position.X - followDistance - followDistanceOffset)
             {
                 command = new MoveRightCommand();
             }
-            if (ParentCharacter.Position.X > entity.Position.X + followDistance + followDistanceOffset)
+            if (ControlledCharacter.Position.X > entity.Position.X + followDistance + followDistanceOffset)
             {
                 command = new MoveLeftCommand();
             }
             
             float horizontalDistance = 
-                Math.Abs(ParentCharacter.Position.X - entity.Position.X);
+                Math.Abs(ControlledCharacter.Position.X - entity.Position.X);
 
             if (horizontalDistance <= followDistance)
             {
                 command = new MoveRightReleaseCommand();
-                command.execute(ParentCharacter);
+                command.execute(ControlledCharacter);
                 command = new MoveLeftReleaseCommand();
-                command.execute(ParentCharacter);
+                command.execute(ControlledCharacter);
                 command = new IdleCommand();
-                command.execute(ParentCharacter);
             }
 
-            command.execute(ParentCharacter);
+            command.execute(ControlledCharacter);
         }
     }
 }
