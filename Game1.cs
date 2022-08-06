@@ -6,8 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-// namespace MonoGame_Programming_Patterns;
-
 namespace IroncladSewing
 {
     public class Game1 : Game
@@ -54,20 +52,19 @@ namespace IroncladSewing
                 11, 7, 
                 position, 
                 new Vector2(2f, 2f));
-            Player player1Component = new Player(player0, 0);
-            player0.Add(player1Component);
+            Player player0Component = new Player(player0, 0);
+            player0.components.Add(player0Component);
 
             player1 = new Character(
                 atlas, 
                 11, 7, 
                 position + new Vector2(50f, 0f), 
                 new Vector2(2f, 2f));
-            Player player2Component = new Player(player1, 1);
-            player0.Add(player2Component);
+            Player player1Component = new Player(player1, 1);
+            player1.components.Add(player1Component);
 
             actors.Add(player0);
             actors.Add(player1);
-
 
             Character npc0 = new Character(
                 atlas,

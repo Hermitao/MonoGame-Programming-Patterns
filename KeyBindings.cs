@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace IroncladSewing
 {
-    public class KeyBindings()
+    public class KeyBindings
     {
         public Keys attack;
         public Keys jump;
@@ -20,10 +20,10 @@ namespace IroncladSewing
         )
         {
             this.attack = attack;
-            this.jump = attack;
-            this.moveRight = attack;
-            this.moveLeft = attack;
-            this.duck = attack;
+            this.jump = jump;
+            this.moveRight = moveRight;
+            this.moveLeft = moveLeft;
+            this.duck = duck;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 
 namespace IroncladSewing
@@ -12,7 +13,7 @@ namespace IroncladSewing
         public Character PlayerCharacter
         {
             get
-            {
+            { 
                 return playerCharacter;
             }
             set
@@ -33,21 +34,21 @@ namespace IroncladSewing
             {
                 case 0:
                     keyBindings = new KeyBindings(
-                        GameSettings.attack0;
-                        GameSettings.jump0;
-                        GameSettings.moveRight0;
-                        GameSettings.moveLeft0;
-                        GameSettings.duck0;
-                    )
+                        GameSettings.attack0,
+                        GameSettings.jump0,
+                        GameSettings.moveRight0,
+                        GameSettings.moveLeft0,
+                        GameSettings.duck0
+                    );
                     break;
                 case 1:
                     keyBindings = new KeyBindings(
-                        GameSettings.attack1;
-                        GameSettings.jump1;
-                        GameSettings.moveRight1;
-                        GameSettings.moveLeft1;
-                        GameSettings.duck1;
-                    )
+                        GameSettings.attack1,
+                        GameSettings.jump1,
+                        GameSettings.moveRight1,
+                        GameSettings.moveLeft1,
+                        GameSettings.duck1
+                    );
                     break;
             }
         }
@@ -61,9 +62,10 @@ namespace IroncladSewing
         {
             Command command = new NullCommand();
             
+            
             switch (PlayerCharacter.state)
             {
-                case PlayerCharacter.State.Idle():
+                case Character.State.Idle:
                     if (KeyboardHandler.Shot(keyBindings.attack))
                     { 
                         command = new AttackCommand();
@@ -86,14 +88,14 @@ namespace IroncladSewing
                     }
                     break;
 
-                case PlayerCharacter.State.Attacking():
+                case Character.State.Attacking:
                     if (KeyboardHandler.Released(keyBindings.attack))
                     {
                         command = new AttackReleaseCommand();
                     }
                     break;
 
-                case PlayerCharacter.State.Ducking():
+                case Character.State.Ducking:
                     if (KeyboardHandler.Shot(keyBindings.attack))
                     {
                         command = new AttackCommand();
@@ -116,11 +118,11 @@ namespace IroncladSewing
                     }
                     break;
 
-                case PlayerCharacter.State.Jumping():
+                case Character.State.Jumping:
                     
                     break;
 
-                case PlayerCharacter.State.RunningRight():
+                case Character.State.RunningRight:
                     if (KeyboardHandler.Shot(keyBindings.attack))
                     {
                         command = new AttackCommand();
@@ -143,7 +145,7 @@ namespace IroncladSewing
                     }
                     break;
 
-                case PlayerCharacter.State.RunningLeft():
+                case Character.State.RunningLeft:
                     if (KeyboardHandler.Shot(keyBindings.attack))
                     {
                         command = new AttackCommand();
@@ -165,11 +167,8 @@ namespace IroncladSewing
                         command = new MoveRightCommand();
                     }
                     break;
-
-                command.execute(PlayerCharacter);
             }
-
-            playerCharacter.execute(command)
+            command.execute(PlayerCharacter);
         }
     }
 }

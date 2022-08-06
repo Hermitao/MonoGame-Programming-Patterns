@@ -20,7 +20,7 @@ namespace IroncladSewing
 
         public override void FollowTarget(Entity entity)
         {
-            Command command = new IdleCommand();
+            Command command = new NullCommand();
 
             float followDistance = 50f;
             float followDistanceOffset = 50f;
@@ -36,7 +36,7 @@ namespace IroncladSewing
             float horizontalDistance = 
                 Math.Abs(ControlledCharacter.Position.X - entity.Position.X);
 
-            if (horizontalDistance <= followDistance)
+            if (horizontalDistance <= followDistance && ControlledCharacter.state != Character.State.Idle)
             {
                 command = new MoveRightReleaseCommand();
                 command.execute(ControlledCharacter);
