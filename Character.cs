@@ -19,8 +19,8 @@ namespace IroncladSewing
         }
 
         public List<Component> components;
-        public float speed = 4f;
-        public float jumpVelocity = 9f;
+        public float speed = 240f;
+        public float jumpVelocity = 720f;
         public Vector2 currentVelocity;
         public State state;
         public bool PressingRight 
@@ -72,7 +72,7 @@ namespace IroncladSewing
         {
             currentVelocity = currentVelocity + WorldSettings.gravity * deltaTime;
 
-            Position += currentVelocity;
+            Position += currentVelocity * deltaTime;
 
             if (Position.Y > 400f)
             {

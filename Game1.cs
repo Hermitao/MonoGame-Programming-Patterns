@@ -14,17 +14,23 @@ namespace IroncladSewing
         Texture2D atlas;
         Vector2 position;
 
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        GraphicsDeviceManager _graphics;
+        SpriteBatch _spriteBatch;
 
-        private Character player0;
-        private Character player1;
+        Character player0;
+        Character player1;
 
-        private List<Actor> actors = new List<Actor>();
+        List<Actor> actors = new List<Actor>();
+
+        SpriteFont font;
+
+        float fps = 0f;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.SynchronizeWithVerticalRetrace = false;
+            IsFixedTimeStep = false;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
@@ -46,6 +52,7 @@ namespace IroncladSewing
             // TODO: use this.Content to load your game content here
             texture = Content.Load<Texture2D>("Individual Sprites/adventurer-run-00");
             atlas = Content.Load<Texture2D>("adventurer-Sheet");
+            font = Content.Load<SpriteFont>("Fonts/FiraMono");
 
             player0 = new Character(
                 atlas, 
@@ -99,6 +106,8 @@ namespace IroncladSewing
             // TODO: Add your update logic here
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             KeyboardHandler.GetState();
+
+            fps = (1/deltaTime);
             
             // Command commandPlayer1 = inputHandlerPlayer1.HandleInput();
             // Command commandPlayer2 = inputHandlerPlayer2.HandleInput();
@@ -123,6 +132,10 @@ namespace IroncladSewing
             {
                 entity.Draw(_spriteBatch);
             }
+
+            _spriteBatch.Begin();
+            _spriteBatch.DrawString(font, "FPS: " + Math.Round(fps), new Vector2(25, 25), Color.White);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

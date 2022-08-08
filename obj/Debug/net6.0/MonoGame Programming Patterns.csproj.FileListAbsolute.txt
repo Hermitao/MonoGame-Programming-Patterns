@@ -26,3 +26,4 @@ C:\Users\Vini\Documents\The Forbidden Room of Amazement\MonoGame Programming Pat
 C:\Users\Vini\Documents\The Forbidden Room of Amazement\MonoGame Programming Patterns\bin\Debug\net6.0\Content\adventurer-v1.5-Sheet.xnb
 C:\Users\Vini\Documents\The Forbidden Room of Amazement\MonoGame Programming Patterns\bin\Debug\net6.0\Content\Individual Sprites\adventurer-run-00.xnb
 C:\Users\Vini\Documents\The Forbidden Room of Amazement\MonoGame Programming Patterns\bin\Debug\net6.0\Content\adventurer-Sheet.xnb
+C:\Users\Vini\Documents\The Forbidden Room of Amazement\MonoGame Programming Patterns\bin\Debug\net6.0\Content\Fonts\FiraMono.xnb

@@ -62,7 +62,6 @@ namespace IroncladSewing
         {
             Command command = new NullCommand();
             
-            
             switch (PlayerCharacter.state)
             {
                 case Character.State.Idle:
@@ -119,7 +118,14 @@ namespace IroncladSewing
                     break;
 
                 case Character.State.Jumping:
-                    
+                    if (KeyboardHandler.Released(keyBindings.moveRight))
+                    {
+                        command = new MoveRightReleaseCommand();
+                    }
+                    if (KeyboardHandler.Released(keyBindings.moveLeft))
+                    {
+                        command = new MoveLeftReleaseCommand();
+                    }
                     break;
 
                 case Character.State.RunningRight:
@@ -143,6 +149,10 @@ namespace IroncladSewing
                     {
                         command = new MoveLeftCommand();
                     }
+                    if (KeyboardHandler.Released(keyBindings.moveLeft))
+                    {
+                        command = new MoveLeftReleaseCommand();
+                    }
                     break;
 
                 case Character.State.RunningLeft:
@@ -165,6 +175,10 @@ namespace IroncladSewing
                     if (KeyboardHandler.Shot(keyBindings.moveRight))
                     {
                         command = new MoveRightCommand();
+                    }
+                    if (KeyboardHandler.Released(keyBindings.moveRight))
+                    {
+                        command = new MoveRightReleaseCommand();
                     }
                     break;
             }

@@ -124,9 +124,9 @@ namespace IroncladSewing
     {
         public override void execute(Character character)
         {
+            character.PressingRight = true;
             if (character.state != Character.State.RunningRight)
             {
-                character.PressingRight = true;
                 character.MoveRight();
             }
 
@@ -150,7 +150,10 @@ namespace IroncladSewing
         public override void execute(Character character)
         {
             character.PressingRight = false;
-            character.MoveRight(true);
+            if (character.state != Character.State.Jumping)
+            {
+                character.MoveRight(true);
+            }
 
             // switch (character.state)
             // {
@@ -165,9 +168,9 @@ namespace IroncladSewing
     {
         public override void execute(Character character)
         {
+            character.PressingLeft = true;
             if (character.state != Character.State.RunningLeft)
             {
-                character.PressingLeft = true;
                 character.MoveLeft();
             }
 
@@ -191,7 +194,10 @@ namespace IroncladSewing
         public override void execute(Character character)
         {
             character.PressingLeft = false;
-            character.MoveLeft(true);
+            if (character.state != Character.State.Jumping)
+            {
+                character.MoveLeft(true);
+            }
 
             // switch (character.state)
             // {
