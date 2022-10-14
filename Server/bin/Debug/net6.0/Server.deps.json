@@ -1,0 +1,41 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Server/1.0.0": {
+        "dependencies": {
+          "Lidgren.Network": "1.0.2"
+        },
+        "runtime": {
+          "Server.dll": {}
+        }
+      },
+      "Lidgren.Network/1.0.2": {
+        "runtime": {
+          "lib/net451/Lidgren.Network.dll": {
+            "assemblyVersion": "2012.1.7.0",
+            "fileVersion": "2012.1.7.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Server/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lidgren.Network/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yXg3ccH3OYFGnsXxzcrUo2FXsXHaZzTUjRCg84NCPGnZyjw6MhwJFHe6MdEVIzejXsE86Kto/sgeV29HSRc8xQ==",
+      "path": "lidgren.network/1.0.2",
+      "hashPath": "lidgren.network.1.0.2.nupkg.sha512"
+    }
+  }
+}

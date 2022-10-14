@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vini\\Documents\\The Forbidden Room of Amazement\\MonoGame Programming Patterns\\MonoGame Programming Patterns.csproj": {}
+    "C:\\Users\\Vini\\Documents\\The Forbidden Room of Amazement\\MonoGame Programming Patterns\\Library\\Library.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vini\\Documents\\The Forbidden Room of Amazement\\MonoGame Programming Patterns\\MonoGame Programming Patterns.csproj": {
+    "C:\\Users\\Vini\\Documents\\The Forbidden Room of Amazement\\MonoGame Programming Patterns\\Library\\Library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vini\\Documents\\The Forbidden Room of Amazement\\MonoGame Programming Patterns\\MonoGame Programming Patterns.csproj",
-        "projectName": "MonoGame Programming Patterns",
-        "projectPath": "C:\\Users\\Vini\\Documents\\The Forbidden Room of Amazement\\MonoGame Programming Patterns\\MonoGame Programming Patterns.csproj",
+        "projectUniqueName": "C:\\Users\\Vini\\Documents\\The Forbidden Room of Amazement\\MonoGame Programming Patterns\\Library\\Library.csproj",
+        "projectName": "Library",
+        "projectPath": "C:\\Users\\Vini\\Documents\\The Forbidden Room of Amazement\\MonoGame Programming Patterns\\Library\\Library.csproj",
         "packagesPath": "C:\\Users\\Vini\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vini\\Documents\\The Forbidden Room of Amazement\\MonoGame Programming Patterns\\obj\\",
+        "outputPath": "C:\\Users\\Vini\\Documents\\The Forbidden Room of Amazement\\MonoGame Programming Patterns\\Library\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Vini\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -41,14 +41,6 @@
             "Lidgren.Network": {
               "target": "Package",
               "version": "[1.0.2, )"
-            },
-            "MonoGame.Content.Builder.Task": {
-              "target": "Package",
-              "version": "[3.8.1.303, )"
-            },
-            "MonoGame.Framework.DesktopGL": {
-              "target": "Package",
-              "version": "[3.8.1.303, )"
             }
           },
           "imports": [

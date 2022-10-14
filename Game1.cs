@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using Lidgren.Network;
+
 namespace IroncladSewing
 {
     public class Game1 : Game
@@ -134,7 +136,23 @@ namespace IroncladSewing
             }
 
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(font, "FPS: " + Math.Round(fps), new Vector2(25, 25), Color.White);
+
+            // _spriteBatch.DrawString(
+            //     font, 
+            //     "FPS: " + Math.Round(fps), 
+            //     new Vector2(12, 12), Color.Gray);
+
+            _spriteBatch.DrawString(
+                font, 
+                "Connected IP:", 
+                new Vector2(12, 36), Color.Gray);
+
+            _spriteBatch.DrawString(
+                font, 
+                "Neon Hearts Indev", 
+                new Vector2(12, _graphics.PreferredBackBufferHeight - 24), 
+                Color.Gray);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
