@@ -32,16 +32,16 @@ namespace IroncladSewing
 
         float fps = 0f;
 
-        ClientManager clientManager = new ClientManager();
+        ClientObject clientObject = new ClientObject();
 
         public void sendMessages()
         {
             while (true)
             {
                 Message message = Message.Create(MessageSendMode.Reliable, 1);
-                message.AddString(clientManager.name + ": " + InputText());
+                message.AddString(clientObject.name + ": " + InputText());
 
-                clientManager.client.Send(message);
+                clientObject.client.Send(message);
             }
         }
 
@@ -49,6 +49,10 @@ namespace IroncladSewing
         public static void HandleMessage(Message message)
         {
             string text = message.GetString();
+
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new String(' ', Console.BufferWidth));
+            //  Console.SetCursorPosition(0, Console.CursorTop);
 
             Console.WriteLine(text);
             Console.Write(">");
@@ -66,7 +70,7 @@ namespace IroncladSewing
    
         protected override void Initialize()
         {
-            clientManager.Initialize();
+            clientObject.Initialize();
             Thread t1 = new Thread(sendMessages);
             t1.Start();
 
@@ -145,7 +149,7 @@ namespace IroncladSewing
             }
 
             base.Update(gameTime);
-            clientManager.Update();
+            clientObject.Update();
         }
 
         protected override void Draw(GameTime gameTime)
@@ -166,7 +170,7 @@ namespace IroncladSewing
 
             _spriteBatch.DrawString(
                 font, 
-                clientManager.client.IsConnected ? "Connected to: " + clientManager.address : "Offline", 
+                clientObject.client.IsConnected ? "Connected to: " + clientObject.address : "Offline", 
                 new Vector2(12, 36), Color.Gray);
 
             _spriteBatch.DrawString(

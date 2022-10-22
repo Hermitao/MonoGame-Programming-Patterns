@@ -19,7 +19,7 @@ namespace IroncladSewing
             return text;
         }
 
-        public static void p(string textToPrint)
+        public static void print(string textToPrint)
         {
             Console.WriteLine(textToPrint);
         }

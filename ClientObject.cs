@@ -12,7 +12,7 @@ using static IroncladSewing.Utils;
 
 namespace IroncladSewing
 {
-    public class ClientManager
+    public class ClientObject
     {
         public Client client = new Client();
         public string name;
