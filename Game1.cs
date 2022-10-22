@@ -5,8 +5,9 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
-using Lidgren.Network;
+using Riptide;
+using Riptide.Utils;
+using static IroncladSewing.Utils;
 
 namespace IroncladSewing
 {
@@ -28,6 +29,8 @@ namespace IroncladSewing
 
         float fps = 0f;
 
+        ClientManager clientObject = new ClientManager();
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -38,9 +41,11 @@ namespace IroncladSewing
 
         }
 
+   
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            clientObject.Initialize();
+
             position = new Vector2(_graphics.PreferredBackBufferWidth / 2,
                 _graphics.PreferredBackBufferHeight / 2);
             
@@ -123,6 +128,7 @@ namespace IroncladSewing
             }
 
             base.Update(gameTime);
+            clientObject.Update();
         }
 
         protected override void Draw(GameTime gameTime)
@@ -137,14 +143,14 @@ namespace IroncladSewing
 
             _spriteBatch.Begin();
 
-            // _spriteBatch.DrawString(
-            //     font, 
-            //     "FPS: " + Math.Round(fps), 
-            //     new Vector2(12, 12), Color.Gray);
+            _spriteBatch.DrawString(
+                font, 
+                "FPS: " + Math.Round(fps), 
+                new Vector2(12, 12), Color.Gray);
 
             _spriteBatch.DrawString(
                 font, 
-                "Connected IP:", 
+                clientObject.client.IsConnected ? "Connected to: " + clientObject.address : "Offline", 
                 new Vector2(12, 36), Color.Gray);
 
             _spriteBatch.DrawString(

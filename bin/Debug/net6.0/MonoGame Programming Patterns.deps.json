@@ -8,20 +8,12 @@
     ".NETCoreApp,Version=v6.0": {
       "MonoGame Programming Patterns/1.0.0": {
         "dependencies": {
-          "Lidgren.Network": "1.0.2",
           "MonoGame.Content.Builder.Task": "3.8.1.303",
-          "MonoGame.Framework.DesktopGL": "3.8.1.303"
+          "MonoGame.Framework.DesktopGL": "3.8.1.303",
+          "RiptideNetworking": "2.0.0.0"
         },
         "runtime": {
           "MonoGame Programming Patterns.dll": {}
-        }
-      },
-      "Lidgren.Network/1.0.2": {
-        "runtime": {
-          "lib/net451/Lidgren.Network.dll": {
-            "assemblyVersion": "2012.1.7.0",
-            "fileVersion": "2012.1.7.0"
-          }
         }
       },
       "MonoGame.Content.Builder.Task/3.8.1.303": {},
@@ -74,6 +66,14 @@
             "fileVersion": "0.0.0.0"
           }
         }
+      },
+      "RiptideNetworking/2.0.0.0": {
+        "runtime": {
+          "RiptideNetworking.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
       }
     }
   },
@@ -82,13 +82,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "Lidgren.Network/1.0.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-yXg3ccH3OYFGnsXxzcrUo2FXsXHaZzTUjRCg84NCPGnZyjw6MhwJFHe6MdEVIzejXsE86Kto/sgeV29HSRc8xQ==",
-      "path": "lidgren.network/1.0.2",
-      "hashPath": "lidgren.network.1.0.2.nupkg.sha512"
     },
     "MonoGame.Content.Builder.Task/3.8.1.303": {
       "type": "package",
@@ -103,6 +96,11 @@
       "sha512": "sha512-eGYhqn0n1olk8MNYeE9EuBmoNNECN1T18rPMaQpkzsEQ0H3nVyFPXC+uCo78v5pi5juQpJ3PSFnSkjzZJ1U58A==",
       "path": "monogame.framework.desktopgl/3.8.1.303",
       "hashPath": "monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+    },
+    "RiptideNetworking/2.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
