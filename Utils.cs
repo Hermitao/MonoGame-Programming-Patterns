@@ -18,5 +18,10 @@ namespace IroncladSewing
             string text = Console.ReadLine();
             return text;
         }
+
+        public static void p(string textToPrint)
+        {
+            Console.WriteLine(textToPrint);
+        }
     }
 }

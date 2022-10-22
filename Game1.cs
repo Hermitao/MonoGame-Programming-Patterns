@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Riptide;
 using Riptide.Utils;
+
 using static IroncladSewing.Utils;
+
 
 namespace IroncladSewing
 {
@@ -29,7 +32,27 @@ namespace IroncladSewing
 
         float fps = 0f;
 
-        ClientManager clientObject = new ClientManager();
+        ClientManager clientManager = new ClientManager();
+
+        public void sendMessages()
+        {
+            while (true)
+            {
+                Message message = Message.Create(MessageSendMode.Reliable, 1);
+                message.AddString(clientManager.name + ": " + InputText());
+
+                clientManager.client.Send(message);
+            }
+        }
+
+        [MessageHandler(1)]
+        public static void HandleMessage(Message message)
+        {
+            string text = message.GetString();
+
+            Console.WriteLine(text);
+            Console.Write(">");
+        }
 
         public Game1()
         {
@@ -38,13 +61,14 @@ namespace IroncladSewing
             IsFixedTimeStep = false;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-
         }
 
    
         protected override void Initialize()
         {
-            clientObject.Initialize();
+            clientManager.Initialize();
+            Thread t1 = new Thread(sendMessages);
+            t1.Start();
 
             position = new Vector2(_graphics.PreferredBackBufferWidth / 2,
                 _graphics.PreferredBackBufferHeight / 2);
@@ -56,7 +80,6 @@ namespace IroncladSewing
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
             texture = Content.Load<Texture2D>("Individual Sprites/adventurer-run-00");
             atlas = Content.Load<Texture2D>("adventurer-Sheet");
             font = Content.Load<SpriteFont>("Fonts/FiraMono");
@@ -115,12 +138,6 @@ namespace IroncladSewing
             KeyboardHandler.GetState();
 
             fps = (1/deltaTime);
-            
-            // Command commandPlayer1 = inputHandlerPlayer1.HandleInput();
-            // Command commandPlayer2 = inputHandlerPlayer2.HandleInput();
-
-            // commandPlayer1.execute(player0);
-            // commandPlayer2.execute(player1);
 
             foreach (Actor actor in actors)
             {
@@ -128,14 +145,13 @@ namespace IroncladSewing
             }
 
             base.Update(gameTime);
-            clientObject.Update();
+            clientManager.Update();
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(new Color(0.1f, 0.1f, 0.1f));
 
-            // TODO: Add your drawing code here
             foreach (Entity entity in actors)
             {
                 entity.Draw(_spriteBatch);
@@ -150,12 +166,12 @@ namespace IroncladSewing
 
             _spriteBatch.DrawString(
                 font, 
-                clientObject.client.IsConnected ? "Connected to: " + clientObject.address : "Offline", 
+                clientManager.client.IsConnected ? "Connected to: " + clientManager.address : "Offline", 
                 new Vector2(12, 36), Color.Gray);
 
             _spriteBatch.DrawString(
                 font, 
-                "Neon Hearts Indev", 
+                "IroncladSewing Indev", 
                 new Vector2(12, _graphics.PreferredBackBufferHeight - 24), 
                 Color.Gray);
 
