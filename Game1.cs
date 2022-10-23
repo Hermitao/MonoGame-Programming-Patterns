@@ -17,18 +17,15 @@ namespace IroncladSewing
     public class Game1 : Game
     {
         Texture2D texture;
-        Texture2D atlas;
+        public static Texture2D atlas;
         Vector2 position;
 
-        GraphicsDeviceManager _graphics;
-        SpriteBatch _spriteBatch;
+        public static GraphicsDeviceManager _graphics;
+        public static SpriteBatch _spriteBatch;
 
-        Character player0;
-        Character player1;
+        public static List<Actor> actors = new List<Actor>();
 
-        List<Actor> actors = new List<Actor>();
-
-        SpriteFont font;
+        public static SpriteFont font;
 
         float fps = 0f;
 
@@ -52,10 +49,16 @@ namespace IroncladSewing
 
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new String(' ', Console.BufferWidth));
-            //  Console.SetCursorPosition(0, Console.CursorTop);
 
             Console.WriteLine(text);
             Console.Write(">");
+        }
+
+        [MessageHandler(2)]
+        public static void HandlePlayerConnected(Message message)
+        {
+            SpawnHuman( new Vector2(_graphics.PreferredBackBufferWidth / 2,
+                _graphics.PreferredBackBufferHeight / 2), message.GetString());
         }
 
         public Game1()
@@ -65,6 +68,26 @@ namespace IroncladSewing
             IsFixedTimeStep = false;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+        }
+
+        public static Character SpawnHuman(Vector2 position, string name = "Hermitao")
+        {
+            Character character = new Character(
+                atlas, 
+                11, 7, 
+                position, 
+                new Vector2(2f, 2f),
+                name);
+            actors.Add(character);
+
+            return character;
+        }
+
+        void SpawnPlayer()
+        {
+            Character player = SpawnHuman(position);
+            Player playerComponent = new Player(player, 0);
+            player.components.Add(playerComponent);
         }
 
    
@@ -88,42 +111,16 @@ namespace IroncladSewing
             atlas = Content.Load<Texture2D>("adventurer-Sheet");
             font = Content.Load<SpriteFont>("Fonts/FiraMono");
 
-            player0 = new Character(
-                atlas, 
-                11, 7, 
-                position, 
-                new Vector2(2f, 2f));
-            Player player0Component = new Player(player0, 0);
-            player0.components.Add(player0Component);
-
-            player1 = new Character(
-                atlas, 
-                11, 7, 
-                position + new Vector2(50f, 0f), 
-                new Vector2(2f, 2f));
-            Player player1Component = new Player(player1, 1);
-            player1.components.Add(player1Component);
-
-            actors.Add(player0);
-            actors.Add(player1);
+            SpawnPlayer();
 
             Character npc0 = new Character(
                 atlas,
                 11, 7,
                 position + new Vector2(-50f, 0f), 
                 new Vector2(2f, 2f));
-            AI_Swordsman ai_swordsman = new AI_Swordsman(npc0, player0);
+            AI_Swordsman ai_swordsman = new AI_Swordsman(npc0, (Character)actors[0]);
             npc0.components.Add(ai_swordsman);
             actors.Add(npc0);
-
-            Character npc1 = new Character(
-                atlas,
-                11, 7,
-                position + new Vector2(-100f, 0f), 
-                new Vector2(2f, 2f));
-            AI_Swordsman ai_swordsman2 = new AI_Swordsman(npc1, npc0);
-            npc1.components.Add(ai_swordsman2);
-            actors.Add(npc1);
         }
 
         protected override void UnloadContent()

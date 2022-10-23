@@ -57,8 +57,9 @@ namespace IroncladSewing
         public Character(
             Texture2D spriteSheet, int rows, int columns, 
             Vector2? position = null,
-            Vector2? scale = null) 
-            : base(spriteSheet, rows, columns, (Vector2)position, (Vector2)scale)
+            Vector2? scale = null,
+            string name = "") 
+            : base(spriteSheet, rows, columns, (Vector2)position, (Vector2)scale, name)
         {
             animatedSprite = new AnimatedSprite(spriteSheet, rows, columns);
             currentVelocity = new Vector2(0, 0);
